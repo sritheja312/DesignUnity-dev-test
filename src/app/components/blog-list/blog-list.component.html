@@ -44,6 +44,7 @@
         </div>
       </div>
 
+<<<<<<< Updated upstream
       <div *ngIf="posts.length > 0; else noPosts" class="blog__list">
         <div
           *ngFor="let post of posts; let i = index"
@@ -59,6 +60,55 @@
               [src]="post._embedded['wp:featuredmedia'][0].source_url"
               alt="{{ post.title.rendered }}"
             />
+=======
+        <!-- Blog List with filter start -->
+        <div class="filter__buttons">
+            <div>
+                <button (click)="filterByCategory('all')">All</button>
+                <button *ngFor="let category of categories" (click)="filterByCategory(category.name)">
+                {{ category.name }}
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <div *ngIf="isLoading">Loading...</div>
+            <div *ngIf="error">
+                <div *ngFor="let post of posts">
+                    <a (click)="navigateToPost(post.id)">
+                        <p> Error loading posts or categories. Please try again later. </p>
+                    </a>
+                </div>
+            </div>
+      
+            <div *ngIf="posts.length > 0; else noPosts" class="blog__list">
+              <div *ngFor="let post of posts" class="blog__list__card">
+                <div class="card__image" *ngIf="post._embedded['wp:featuredmedia']?.length > 0">
+                  <img [src]="post._embedded['wp:featuredmedia'][0].source_url" alt="{{ post.title.rendered }}">
+                </div>
+                <div class="card__header">
+                  <h2>{{ post.title.rendered }}</h2>
+                </div>
+                <div class="card__details">
+                  
+                  <!-- <div class="card__details__text" [innerHTML]="post.excerpt.rendered | slice:0:150"></div> -->
+
+                  <div class="card__details__text" 
+                    [innerHTML]="
+                    post.excerpt.rendered.length > 150 ? (post.excerpt.rendered | slice:0:150) + '...' : post.excerpt.rendered " >
+                  </div>
+
+                  <button class="button" (click)="navigateToPost(post.id)">Know More 
+                    <img src="../../../assets/svg/arrow.svg" alt="">
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <ng-template #noPosts>
+              <p>No posts available.</p>
+            </ng-template>
+>>>>>>> Stashed changes
           </div>
           <div class="card__header">
             <h2>{{ post.title.rendered }}</h2>

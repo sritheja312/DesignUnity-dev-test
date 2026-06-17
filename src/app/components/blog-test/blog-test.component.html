@@ -1,7 +1,0 @@
-<div *ngFor="let item of visibleItems">
-    Content
-  </div>
-  
-  <a href="#" (click)="loadMore($event)" *ngIf="visibleItems.length < items.length" id="loadMore">Load More</a>
-  <a href="#" (click)="loadLess($event)" *ngIf="visibleItems.length > initialVisibleItems" id="loadLess">Load Less</a>
-  

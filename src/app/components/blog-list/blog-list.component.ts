@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { WordpressService } from '../wordpress.service';
 import { Router } from '@angular/router';
+<<<<<<< Updated upstream
 import { TitleService } from 'src/app/service/title.service';
 import { MetaTagsService } from 'src/app/service/meta-tags.service';
+=======
+
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-blog-list',
@@ -18,6 +22,7 @@ export class BlogListComponent implements OnInit {
   loadMoreAmount: number = 3;
   isLoading = true;
   error: any;
+<<<<<<< Updated upstream
   featuredBlog: any[] = [];
   activeSection = 'All';
   constructor(
@@ -26,6 +31,10 @@ export class BlogListComponent implements OnInit {
     private titleService: TitleService,
     private metaTagsService: MetaTagsService
   ) {}
+=======
+
+  constructor(private postService: WordpressService, private router: Router) { }
+>>>>>>> Stashed changes
 
   ngOnInit(): void {
     this.titleService.setPageTitle('Design Unity - Blogs');
@@ -90,9 +99,15 @@ export class BlogListComponent implements OnInit {
       }
     }
   }
+<<<<<<< Updated upstream
   loadBlog(post: any) {
     this.router.navigate(['/blogs', post.title.rendered]);
     localStorage.setItem('blogId', post.id);
+=======
+  
+  navigateToPost(postId: number): void {
+    this.router.navigate(['/blog', postId]);
+>>>>>>> Stashed changes
   }
 
   /*
